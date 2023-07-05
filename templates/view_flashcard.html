@@ -1,0 +1,52 @@
+{% extends 'new_base.html' %}
+{% block title %}view flashcard{% endblock title %}
+{% block content %}
+<style>
+    body {
+        /* background: linear-gradient(to right, #89f7fe, #66a6ff); */
+        {% comment %} background: linear-gradient(to bottom, rgba(202, 222, 241, 0.97), rgba(202, 222, 241, 0.97)); {% endcomment %}
+        background-color: white;
+        color: white;
+        margin-top: 200px;
+    }
+</style>
+<body>
+  <center>
+    <h1 style="font-family: Garamond, serif; font-size:60px; color: #404040	">Flashcards</h1>
+  </center>
+    {% for flashcard in flashcards%}
+    {% comment %} <div class="card border-success mb-3" style="max-width: 18rem;">
+        <div class="card-header bg-transparent border-success"style="color: black;">{{flashcard.set_title}}</div>
+        <div class="card-body text-success">
+          <h5 class="card-title" style="color: black;">{{flashcard.term}}</h5>
+          <p class="card-text" style="color: black;">{{flashcard.desc}}</p>
+        </div>
+        <div class="card-footer bg-transparent border-success"style="color: black;"><p>{{flashcard.sid_fk.name}}</p></div>
+      </div> {% endcomment %}
+      <div class="card w-75" style="margin: 0px 200px; background-color: Real Madrid Gold;">
+        <div class="card" style=" background-color: white;">
+                <h4 class="card-header"style="color: white; background-color:Teal; font-family: Garamond, serif; ">
+                  <b>{{flashcard.set_title}}</b><span style="color: snowwhite;font-size: 20px; float:right;">~{{flashcard.sid_fk.name}}</span></h4>
+                <div class="card-body" style="background-color:FloralWhite;">
+                  <table>
+                    <tr>
+                      <td>
+                        <h6 style="color: Darkgreen;padding: 0px 450px 0px 0px;">Term</h6>
+                        <p class="card-title"style="color: black; font-size:25px">{{flashcard.term}}</p>
+                      </td>
+                      <td style=" padding: 0px 0px 10px 40px;border-left:1px solid lightblue;">  
+                        <h6 style="color: Darkgreen;">Description</h6>
+                         <p class="card-text"style="color: black; font-size:20px">{{flashcard.desc}}</p>
+                      </td>
+                    </tr>
+                  </table>
+
+            </div>
+          </div>
+      </div>
+      <br>
+      {% endfor %}
+
+</body>
+
+{% endblock content %}

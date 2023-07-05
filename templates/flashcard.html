@@ -1,0 +1,81 @@
+{% extends 'new_base.html' %}
+
+{% load static %}
+
+{% block title %}Upload Note{% endblock title %}
+
+{% block content %}
+<style>
+    body {
+        
+        background: 
+        color: white;
+        margin-top: 200px;
+    }
+</style>
+<body>
+    <div class="container mt-5">
+      <h1 style="color: black;">Flashcard</h1>
+      <h2 style="color: black;">Card Information</h2>
+      <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="form-group">
+              <label for="set_title" style="color: black;">Set Title:</label>
+              <textarea class="form-control" id="set_title" name="set_title" required></textarea>
+          </div>
+          <div class="form-group">
+              <label for="sub_id_fk" style="color: black;">Subject:</label>
+              <select class="form-control" id="sub_id_fk" name="sub_id_fk" required>
+                  {% for subject in subjects %}
+                  <option value="{{ subject.sub_id }}">{{ subject.sub_name }}</option>
+                  {% endfor %}
+              </select>
+          </div>
+          <div class="form-group">
+            <label for="sid_fk" style="color: black;">Student:</label>
+            <select class="form-control" id="sid_fk" name="sid_fk" required>
+                {% for studentdetail in student %}
+                  <option value="{{ studentdetail.sid }}">{{ studentdetail.sid }}</option>
+                {% endfor %}
+            </select>
+        </div>
+          <div class="form-group">
+              <label for="cid_fk" style="color: black;">Course:</label>
+              <select class="form-control" id="cid_fk" name="cid_fk" required>
+                  {% for coursedetail in course %}
+                  <option value="{{ coursedetail.cid }}">{{ coursedetail.cname }}</option>
+                  {% endfor %}
+              </select>
+          </div>
+          <h2 style="color: black;">Create Card</h2>
+    <div class="row">
+      <div class="col-sm-10">
+        <div class="card">
+          <div class="card-body">
+            <div class="form-group">
+              <table>
+                <tr>
+                  <td>
+                    <h6 style="color: Darkgreen;padding: 0px 450px 0px 0px;">Term</h6>
+                    <textarea id="term" name="term" style="color: black;"rows="4" cols="60"></textarea>
+                  </td>
+                  <td style=" padding: 0px 0px 10px 40px;border-left:1px solid lightblue;">  
+                    <h6 style="color: Darkgreen;">Description</h6>
+                    <textarea id="desc" name= "desc" style="color: black;" rows="4" cols="60"></textarea>                     
+                  </td>
+                </tr>
+              </table>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+    </div>
+  </div>
+  </body>
+{% endblock content %}
+
+
+

@@ -1,0 +1,394 @@
+{% extends 'welcome_base.html' %}
+
+{% block title %}Welcome{% endblock title %}
+
+{% block body %}
+{% comment %}
+<style>
+    
+</style> {% endcomment %}
+<style>
+    @keyframes slideInFromLeft {
+        from {
+            transform: translateX(-100%);
+        }
+
+        to {
+            transform: translateX(0);
+        }
+    }
+
+    h1 {
+        animation: slideInFromLeft 2s;
+    }
+
+    @keyframes slideInFromRight {
+        from {
+            transform: translateX(100%);
+        }
+
+        to {
+            transform: translateX(0);
+        }
+    }
+
+    p {
+        animation: slideInFromRight 2s;
+    }
+    .float-animation {
+        animation-name: float;
+        animation-duration: 3s;
+        animation-iteration-count: infinite;
+        animation-timing-function: ease-in-out;
+    }
+
+    @keyframes float {
+        0% {
+            transform: translatey(0px);
+        }
+
+        50% {
+            transform: translatey(-70px);
+        }
+
+        100% {
+            transform: translatey(0px);
+        }
+    }
+    {% comment %} ************ {% endcomment %}
+
+    .section-wrapper {
+        padding: 145px 0; /* Adjust the padding as per your requirements */
+    }
+    
+    .section-content {
+        max-width: 3000px; /* Adjust the max-width as per your requirements */
+        margin: 0 auto;
+    }
+    
+    .section-heading {
+        font-size: 4rem; /* Adjust the font-size as per your requirements */
+    }
+    
+    .section-subheading {
+        font-size: 2.5rem; /* Adjust the font-size as per your requirements */
+    }
+    
+    .section-image {
+        max-width: 800px; /* Adjust the max-width as per your requirements */
+        margin-top: 50px; /* Adjust the margin-top as per your requirements */
+    }
+    
+</style>
+
+<script>
+    // Smooth scroll to section
+    function smoothScroll(target) {
+        document.querySelector(target).scrollIntoView({
+            behavior: 'smooth'
+        });
+    }
+
+    // Add click event listeners to menu items
+    document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = this.getAttribute('href');
+            smoothScroll(target);
+        });
+    });
+
+// // Redirect to home page when clicking on menu items without data-scroll-to attribute
+// document.querySelectorAll('nav a:not([data-scroll-to])').forEach(anchor => {
+//     anchor.addEventListener('click', function(e) {
+//       window.location.href = '/';
+//     });
+//   });
+
+</script>
+
+{% comment %} <section id=''>
+    <div class=" container-fluid bg-white px-0 px-md-5 mb-5"
+        style="margin-top:100px; background: linear-gradient(to bottom, rgba(202, 222, 241, 0.97), rgba(202, 222, 241, 0.97));">
+        <div class="row align-items-center px-3">
+            <div class="col-lg-6 text-center text-lg-left">
+                <h1 class="display-3 font-weight-bold text-black">A Smarter Way to Learn</h1>
+                <p>
+                <h2>One Stop Destination for all your notes</h2>
+                </p>
+            </div>
+            <div class="col-lg-6 text-center text-lg-right">
+                <img class="img-fluid mt-5 float-animation" src="/static/logo.png" alt="SmartMate Logo" />
+            </div>
+        </div>
+    </div>
+</section> {% endcomment %}
+
+<section id='section-id' class="section-wrapper">
+    <div class="container-fluid bg-white px-0 px-md-5 mb-5">
+        <div class="row align-items-center px-3 section-content">
+            <div class="col-lg-6 text-center text-lg-left">
+                <h1 class="display-3 font-weight-bold text-black section-heading">A Smarter Way to Learn</h1>
+                <p class="section-subheading">One Stop Destination for all your notes</p>
+            </div>
+            <div class="col-lg-6 text-center text-lg-right">
+                <img class="img-fluid mt-5 float-animation section-image" src="/static/logo.png" alt="SmartMate Logo" />
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock body %}
+
+{% block content %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <style>
+            body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, rgba(202, 222, 241, 0.97), rgba(202, 222, 241, 0.97));
+            }
+            .owl-carousel .owl-item {
+                transition: all 0.3s ease-in-out;
+            }
+        
+            .owl-carousel .owl-item .card {
+                padding: 30px;
+                position: relative;
+            }
+        
+            .owl-carousel .owl-stage-outer {
+                overflow-y: auto !important;
+                padding-bottom: 40px;
+            }
+        
+            .owl-carousel .owl-item img {
+                height: 200px;
+                object-fit: cover;
+                border-radius: 6px;
+            }
+        
+            .owl-carousel .owl-item .card .name {
+                position: absolute;
+                bottom: -20px;
+                left: 33%;
+                color: #101c81;
+                font-size: 1.1rem;
+                font-weight: 600;
+                background-color: aquamarine;
+                padding: 0.3rem 0.4rem;
+                border-radius: 5px;
+                box-shadow: 2px 3px 15px #3c405a;
+            }
+        
+            .owl-carousel .owl-item .card {
+                opacity: 0.2;
+                transform: scale3d(0.8, 0.8, 0.8);
+                transition: all 0.3s ease-in-out;
+            }
+        
+            .owl-carousel .owl-item.active.center .card {
+                opacity: 1;
+                transform: scale3d(1, 1, 1);
+            }
+        
+            .owl-carousel .owl-dots {
+                display: inline-block;
+                width: 100%;
+                text-align: center;
+            }
+        
+            .owl-theme .owl-dots .owl-dot span {
+                height: 20px;
+                background: #2a6ba3 !important;
+                border-radius: 2px !important;
+                opacity: 0.8;
+            }
+        
+            .owl-theme .owl-dots .owl-dot.active span,
+            .owl-theme .owl-dots .owl-dot:hover span {
+                height: 13px;
+                width: 13px;
+                opacity: 1;
+                transform: translateY(2px);
+                background: #83b8e7 !important;
+            }
+        
+            @media(min-width: 480.6px) and (max-width: 575.5px) {
+                .owl-carousel .owl-item .card .name {
+                    left: 24%;
+                }
+            }
+        
+            @media(max-width: 360px) {
+                .owl-carousel .owl-item .card .name {
+                    left: 30%;
+                }
+            }
+            .social-icons {
+                margin-top: 10px;
+                /* Updated margin */
+            }
+        
+            .social-icons a {
+                color: #333;
+                margin: 0 5px;
+                /* Updated margin */
+                font-size: 20px;
+                /* Updated font size */
+            }
+        
+            .social-icons a:hover {
+                color: #0077b5;
+            }
+        </style>
+        <script>
+            $(document).ready(function () {
+                var silder = $(".owl-carousel");
+                silder.owlCarousel({
+                    autoplay: true,
+                    autoplayTimeout: 3000,
+                    autoplayHoverPause: false,
+                    items: 1,
+                    stagePadding: 20,
+                    center: true,
+                    nav: false,
+                    margin: 50,
+                    dots: true,
+                    loop: true,
+                    responsive: {
+                        0: { items: 1 },
+                        480: { items: 2 },
+                        575: { items: 2 },
+                        768: { items: 2 },
+                        991: { items: 3 },
+                        1200: { items: 4 }
+                    }
+                });
+            });
+        </script>
+
+<div class="container">
+        <section id="team-1">
+            <div class="owl-carousel owl-theme mt-5">
+                <div class="owl-item">
+                    <div class="card">
+                        <div class="img-card">
+                            <img src="/media/images/picofme.png" alt="">
+                        </div>
+                        <div class="testimonial mt-4 mb-2">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus expedita dicta doloremque odit
+                            saepe quo natus aut accusantium alias blanditiis.
+                        </div>
+                        <div class="social-icons">
+                            <a href="https://www.linkedin.com/in/fanendra-bhushan-dhruw-94a59621a/"><i class="fa fa-linkedin"></i></a>
+                        </div>
+                        <div class="name">
+                            Fanendra Dhruw
+                        </div>
+                    </div>
+                </div>
+                <div class="owl-item">
+                    <div class="card">
+                        <div class="img-card">
+                            <img src="/media/images/Arpit-1.png"
+                                alt="">
+                        </div>
+                        <div class="testimonial mt-4 mb-2">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus expedita dicta doloremque odit
+                            saepe quo natus aut accusantium alias blanditiis.
+                        </div>
+                        <div class="social-icons">
+                            <a href="www.linkedin.com/in/arpit-jain-12102720a"><i class="fa fa-linkedin"></i></a>
+                        </div>
+                        <div class="name">
+                            Arpit Jain
+                        </div>
+                    </div>
+                </div>
+                <div class="owl-item">
+                    <div class="card">
+                        <div class="img-card">
+                            <img src="/media/images/Devisha-1.png"
+                                alt="">
+                        </div>
+                        <div class="testimonial mt-4 mb-2">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus expedita dicta doloremque odit
+                            saepe quo natus aut accusantium alias blanditiis.
+                        </div>
+                        <div class="social-icons">
+                            <a href=""><i class="fa fa-linkedin"></i></a>
+                        </div>
+                        <div class="name">
+                            Devisha Sinha
+                        </div>
+                    </div>
+                </div>
+                <div class="owl-item">
+                    <div class="card">
+                        <div class="img-card">
+                            <img src="/media/images/VK-1.png"
+                                alt="">
+                        </div>
+                        <div class="testimonial mt-4 mb-2">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus expedita dicta doloremque odit
+                            saepe quo natus aut accusantium alias blanditiis.
+                        </div>
+                        <div class="social-icons">
+                            <a href="https://www.linkedin.com/in/vaishnavi-khandelwal-14a41b175"><i class="fa fa-linkedin"></i></a>
+                        </div>
+                        <div class="name">
+                            Vaishnavi K
+                        </div>
+                    </div>
+                </div>
+                <div class="owl-item">
+                    <div class="card">
+                        <div class="img-card">
+                            <img src="/media/images/Ritesh-1.png"
+                                alt="">
+                        </div>
+                        <div class="testimonial mt-4 mb-2">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus expedita dicta doloremque odit
+                            saepe quo natus aut accusantium alias blanditiis.
+                        </div>
+                        <div class="social-icons">
+                            <a href="https://www.linkedin.com/in/ritesh-kumar2030/"><i class="fa fa-linkedin"></i></a>
+                        </div>
+                        <div class="name">
+                            Ritesh Kumar
+                        </div>
+                    </div>
+                </div>
+                <div class="owl-item">
+                    <div class="card">
+                        <div class="img-card">
+                            <img src="/static/"
+                                alt="">
+                        </div>
+                        <div class="testimonial mt-4 mb-2">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus expedita dicta doloremque odit
+                            saepe quo natus aut accusantium alias blanditiis.
+                        </div>
+                        <div class="social-icons">
+                            <a href="#"><i class="fa fa-linkedin"></i></a>
+                        </div>
+                        <div class="name">
+                            Divya Gupta
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+</div>
+
+
+{% endblock content %}

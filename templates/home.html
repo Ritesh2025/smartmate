@@ -1,0 +1,545 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Home{% endblock title %}
+
+
+{% block body %}
+<!-- Header Start -->
+<style>
+    .float-animation {
+        animation-name: float;
+        animation-duration: 3s;
+        animation-iteration-count: infinite;
+        animation-timing-function: ease-in-out;
+    }
+
+    @keyframes float {
+        0% {
+            transform: translatey(0px);
+        }
+
+        50% {
+            transform: translatey(-70px);
+        }
+
+        100% {
+            transform: translatey(0px);
+        }
+    }
+    .section-wrapper {
+        padding: 145px 0; /* Adjust the padding as per your requirements */
+    }
+    
+    .section-content {
+        max-width: 3000px; /* Adjust the max-width as per your requirements */
+        margin: 0 auto;
+    }
+    
+    .section-heading {
+        font-size: 4rem; /* Adjust the font-size as per your requirements */
+    }
+    
+    .section-subheading {
+        font-size: 2.5rem; /* Adjust the font-size as per your requirements */
+    }
+    
+    .section-image {
+        max-width: 800px; /* Adjust the max-width as per your requirements */
+        margin-top: 50px; /* Adjust the margin-top as per your requirements */
+    }
+    
+</style>
+
+<script>
+    // Smooth scroll to section
+    function smoothScroll(target) {
+        document.querySelector(target).scrollIntoView({
+            behavior: 'smooth'
+        });
+    }
+
+    // Add click event listeners to menu items
+    document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = this.getAttribute('href');
+            smoothScroll(target);
+        });
+    });
+</script>
+
+<section id='home'>
+    <div class=" container-fluid px-0 px-md-5 mb-5"
+        style="margin-top:100px; background: MintCream;">
+        <div class="row align-items-center px-3">
+            <div class="col-lg-6 text-center text-lg-left">
+                <h1 class="display-3 font-weight-bold text-black">A Smarter Way to Learn</h1>
+                <p>
+                <h2>One Stop Destination for all your notes</h2>
+                </p>
+            </div>
+            <div class="col-lg-6 text-center text-lg-right">
+                <img class="img-fluid mt-5 float-animation" src="/static/logo.png" alt="SmartMate Logo" />
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Header End -->
+
+<!-- Notes Cards -->
+
+<!-- <div class="row justify-content-center">
+    {% for note in notes %}
+    <div class="col-sm-2">
+        <div class="card" style="width: 18rem;">
+            <img src="/static/python.jpg" class="card-img-top" alt="">
+            <div class="card-body">
+                <small class="mr-3"><i class="fa fa-user text-primary"></i> {{note.fid_fk.name}}</small>
+                <small class="mr-3"><i class="fa fa-folder text-primary"></i> {{note.sub_id_fk.sub_name}}</small>
+                <small class="mr-3"><i class="fa fa-building text-primary"></i> {{note.cid_fk.cname}} </small>
+                <h5 class="card-title">{{ note.note_text }}</h5>
+                <a href="{{ note.file.url }}" class="btn btn-primary">Download</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div> -->
+
+<!-- <div class="container"> -->
+<div class="owl-carousel owl-theme mt-5">
+    {% for note in notes %}
+        <div class="owl-item">
+            <div class="card">
+                <div class="img-card">
+                    <img src="/static/python.jpg" alt="">
+                </div>
+                <div class="card-body">
+                    <small class="mr-3"><i class="fa fa-user text-primary"></i> {{note.fid_fk.name}}</small>
+                    <small class="mr-3"><i class="fa fa-folder text-primary"></i> {{note.sub_id_fk.sub_name}}</small>
+                    <small class="mr-3"><i class="fa fa-building text-primary"></i> {{note.cid_fk.cname}} </small>
+                    <h5 class="card-title">{{ note.note_text }}</h5>
+                    <a href="{{ note.file.url }}" class="btn btn-primary">Download</a>
+                </div>
+                <!-- <div class="testimonial mt-4 mb-2">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus expedita dicta doloremque odit
+                    saepe quo natus aut accusantium alias blanditiis.
+                </div> -->
+            </div>
+        </div>
+    {% endfor %}
+</div>
+<!-- </div> -->
+<!-- Notes Cards End -->
+
+
+<!-- About SmartMate -->
+<section id='about'>
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5">
+                    <img class="img-fluid rounded mb-5 mb-lg-0" src="/static/about-1.jpg" alt="">
+                </div>
+                <div class="col-lg-7">
+                    <!-- <p class="section-title pr-5">
+                        <span class="pr-2">Learn About Us</span>
+                    </p> -->
+                    <h1 class="mb-4"> A Smarter Way to Learn</h1>
+                    <p>
+                        SmartMate is an E-Learning Management System that aims to improve the exchange of study
+                        materials
+                        between students and faculties in educational institutions. With the increase in the number of
+                        students and departments, it can be challenging to share study materials using traditional
+                        methods.
+                        SmartMate addresses this issue by providing an automated procedure for studying notes online.
+                        The system is being developed using a powerful tech stack that includes Python, Django,
+                        Bootstrap
+                        and MySQL. This allows for the creation of a robust and user-friendly platform that can be
+                        easily
+                        accessed by both students and teachers.
+
+                    </p>
+                    <div class="row pt-2 pb-4">
+                        <div class="col-6 col-md-4">
+                            <img class="img-fluid rounded" src="img/about-2.jpg" alt="">
+                        </div>
+                        <div class="col-6 col-md-8">
+                            <ul class="list-inline m-0">
+                                <li class="py-2 border-top border-bottom">
+                                    <i class="fa fa-check text-primary mr-3"></i>Easy to use
+                                </li>
+                                <li class="py-2 border-bottom">
+                                    <i class="fa fa-check text-primary mr-3"></i>Provide Notes
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About SmartMate End -->
+
+<!-- Schools -->
+
+<div class="container-fluid pt-5">
+    <div class="container">
+        <div class="text-center pb-2">
+            <!-- <p class="section-title px-5">
+                <span class="px-2">Schools</span>
+            </p> -->
+            <h1 class="mb-4">Schools we Have...</h1>
+        </div>
+        <section id="schools">
+            <div class="row">
+                <div class="col-lg-4 mb-5">
+                    <div class="card border-0 bg-light shadow-sm pb-2">
+                        <img class="card-img-top mb-2" src="/static/socs.jpg" alt="">
+                        <div class="card-body text-center">
+                            <h4 class="card-title">School of Computer Science</h4>
+                            <p class="card-text">
+                                School of Computer Science offers various programs like B.Tech., BCA, B.Sc., M.Tech.,
+                                MCA,
+                                Ph.D. The School of Computer Science concentrates on the real-world applicability and
+                                social
+                                impact of technology in its carefully crafted curriculum. Given the rapid pace at which
+                                the
+                                field is evolving, we continuously engage with academic leaders to provide leading-edge
+                                technology to our students.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 mb-5">
+                    <div class="card border-0 bg-light shadow-sm pb-2">
+                        <img class="card-img-top mb-2" src="/static/sod.jpg" alt="">
+                        <div class="card-body text-center">
+                            <h4 class="card-title">School of Engineering</h4>
+                            <p class="card-text">
+                                School of Design offers various programs like B.Des., M.Des., and B.Des./M.Des. The
+                                School
+                                of Design nurtures responsible designers who possess cultural understanding, are agile
+                                and
+                                have broad-based innovation capabilities; designers who can create intelligent,
+                                inclusive,
+                                sensitive design, whether to make big differences or small ones.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 mb-5">
+                    <div class="card border-0 bg-light shadow-sm pb-2">
+                        <img class="card-img-top mb-2" src="/static/sob.jpg" alt="">
+                        <div class="card-body text-center">
+                            <h4 class="card-title">School of Business</h4>
+                            <p class="card-text">
+                                School of Business offers various programs like BBA, B.Com., MBA, B.Com. (Hons.) - MBA,
+                                BBA
+                                – MBA, Ph.D. Through a carefully-crafted curriculum, faculty of the highest academic
+                                expertise, and interactions with industry-leaders with a global perspective, the School
+                                of
+                                Business prepares students to work in an the is beca
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Schools End -->
+
+        <!-- Owl Corousel -->
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <style>
+            body {
+                font-family: 'Open Sans', sans-serif;
+                margin: 0;
+                padding: 0;
+                background: MintCream;
+                /* linear-gradient(to bottom, rgba(202, 222, 241, 0.97), rgba(202, 222, 241, 0.97)); */
+            }
+            .owl-carousel .owl-item {
+                transition: all 0.3s ease-in-out;
+            }
+        
+            .owl-carousel .owl-item .card {
+                padding: 30px;
+                position: relative;
+            }
+        
+            .owl-carousel .owl-stage-outer {
+                overflow-y: auto !important;
+                padding-bottom: 40px;
+            }
+        
+            .owl-carousel .owl-item img {
+                height: 200px;
+                object-fit: cover;
+                border-radius: 6px;
+            }
+        
+            .owl-carousel .owl-item .card .name {
+                position: absolute;
+                bottom: -20px;
+                left: 33%;
+                color: #101c81;
+                font-size: 1.1rem;
+                font-weight: 600;
+                background-color: aquamarine;
+                padding: 0.3rem 0.4rem;
+                border-radius: 5px;
+                box-shadow: 2px 3px 15px #3c405a;
+            }
+        
+            .owl-carousel .owl-item .card {
+                opacity: 0.2;
+                transform: scale3d(0.8, 0.8, 0.8);
+                transition: all 0.3s ease-in-out;
+            }
+        
+            .owl-carousel .owl-item.active.center .card {
+                opacity: 1;
+                transform: scale3d(1, 1, 1);
+            }
+        
+            .owl-carousel .owl-dots {
+                display: inline-block;
+                width: 100%;
+                text-align: center;
+            }
+        
+            .owl-theme .owl-dots .owl-dot span {
+                height: 20px;
+                background: #2a6ba3 !important;
+                border-radius: 2px !important;
+                opacity: 0.8;
+            }
+        
+            .owl-theme .owl-dots .owl-dot.active span,
+            .owl-theme .owl-dots .owl-dot:hover span {
+                height: 13px;
+                width: 13px;
+                opacity: 1;
+                transform: translateY(2px);
+                background: #83b8e7 !important;
+            }
+        
+            @media(min-width: 480.6px) and (max-width: 575.5px) {
+                .owl-carousel .owl-item .card .name {
+                    left: 24%;
+                }
+            }
+        
+            @media(max-width: 360px) {
+                .owl-carousel .owl-item .card .name {
+                    left: 30%;
+                }
+            }
+            .social-icons {
+                margin-top: 10px;
+                /* Updated margin */
+            }
+        
+            .social-icons a {
+                color: #333;
+                margin: 0 5px;
+                /* Updated margin */
+                font-size: 20px;
+                /* Updated font size */
+            }
+        
+            .social-icons a:hover {
+                color: #0077b5;
+            }
+            .card{
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            }
+        </style>
+        <script>
+            $(document).ready(function () {
+                var silder = $(".owl-carousel");
+                silder.owlCarousel({
+                    autoplay: true,
+                    autoplayTimeout: 3000,
+                    autoplayHoverPause: false,
+                    items: 1,
+                    stagePadding: 20,
+                    center: true,
+                    nav: false,
+                    margin: 50,
+                    dots: true,
+                    loop: true,
+                    responsive: {
+                        0: { items: 1 },
+                        480: { items: 2 },
+                        575: { items: 2 },
+                        768: { items: 2 },
+                        991: { items: 3 },
+                        1200: { items: 4 }
+                    }
+                });
+            });
+        </script>
+        <!-- Owl Corousel End -->
+
+        <!-- Our Team Style -->
+
+        <style>
+            .trainers .member {
+                text-align: center;
+                margin-bottom: 20px;
+                background: #fff;
+                border: 1px solid #000;
+
+            }
+
+            .trainers .member img {
+                margin: -1px -1px 30px -1px;
+            }
+
+            .trainers .member .member-content {
+                padding: 0 20px 30px 20px;
+            }
+
+            .trainers .member h4 {
+                font-weight: 700;
+                margin-bottom: 2px;
+                font-size: 18px;
+            }
+
+            .trainers .member span {
+                font-style: italic;
+                display: block;
+                font-size: 13px;
+            }
+
+            .trainers .member p {
+                padding-top: 10px;
+                font-size: 14px;
+                font-style: italic;
+                color: #aaaaaa;
+            }
+
+            .trainers .member .social {
+                margin-top: 15px;
+            }
+
+            .trainers .member .social a {
+                color: #7e9486;
+                transition: 0.3s;
+            }
+
+            .trainers .member .social a:hover {
+                color: #5fcf80;
+            }
+
+            .trainers .member .social i {
+                font-size: 18px;
+                margin: 0 2px;
+            }
+        </style>
+
+        <section id="team">
+            <div class="container-trainers"  data-aos="fade-up">
+                <h1 class="mb-4 text-center pb-2" > Our Team</h1>
+                
+        
+                <div class="row" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="col-lg-2 col-md-4 d-flex align-items-stretch">
+                        <div class="member">
+                            <img src="/media/image/picofme.png" class="img-fluid" alt="">
+                            <div class="member-content">
+                                <h4>FANENDRA BHUSHAN DHRUW</h4>
+                                <span>BACKEND</span>
+                                <div class="social">
+                                    <a href="https://www.linkedin.com/in/fanendra-bhushan-dhruw-94a59621a/"><i class="bi bi-linkedin"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="col-lg-2 col-md-4 d-flex align-items-stretch">
+                        <div class="member">
+                            <img src="/media/image/Arpit-1.png" class="img-fluid" alt="">
+                            <div class="member-content">
+                                <h4>ARPIT JAIN</h4>
+                                <span>FRONTEND</span>
+                                <div class="social">
+        
+                                    <a href="http://www.linkedin.com/in/arpit-jain-12102720a"><i class="bi bi-linkedin"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="col-lg-2 col-md-4 d-flex align-items-stretch">
+                        <div class="member">
+                            <img src="/media/image/Ritesh-1.png" class="img-fluid" alt="">
+                            <div class="member-content">
+                                <h4>RITESH KUMAR</h4>
+                                <span>FRONTEND</span>
+                                <div class="social">
+                                    
+                                    <a href="https://www.linkedin.com/in/ritesh-kumar2030/"><i class="bi bi-linkedin"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 d-flex align-items-stretch">
+                        <div class="member">
+                            <img src="/media/image/VK-1.png" class="img-fluid" alt="">
+                            <div class="member-content">
+                                <h4>VAISHNAVI KHANDELWAL</h4>
+                                <span>FRONTEND</span>        
+                                <div class="social">
+                                    
+                                    <a href="https://www.linkedin.com/in/vaishnavi-khandelwal-14a41b175"><i class="bi bi-linkedin"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 d-flex align-items-stretch">
+                        <div class="member">
+                            <img src="/media/image/Devisha-1.png" class="img-fluid" alt="">
+                            <div class="member-content">
+                                <h4>DEVISHA SINHA</h4>
+                                <span>BACKEND</span>
+                                <div class="social">
+                                    
+                                    <a href="https://www.linkedin.com/in/devisha-sinha/"><i class="bi bi-linkedin"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 d-flex align-items-stretch">
+                        <div class="member">
+                            <img src="/static/bgimg.jpg" class="img-fluid" alt="">
+                            <div class="member-content">
+                                <h4>DIVYA GUPTA</h4>
+                                <span>BACKEND</span>
+                                <div class="social">
+                                    
+                                    <a href=""><i class="bi bi-linkedin"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        
+                </div>
+        
+            </div>
+        </section>
+    </div>
+</div>
+
+{% endblock body%}

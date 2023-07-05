@@ -1,0 +1,60 @@
+{% extends 'new_base.html' %}
+
+{% load static %}
+
+{% block title %}Upload Announcement{% endblock title %}
+
+{% block content %}
+<style>
+    body {
+        /* background: linear-gradient(to right, #89f7fe, #66a6ff); */
+        background: linear-gradient(to bottom, rgba(202, 222, 241, 0.97), rgba(202, 222, 241, 0.97));
+        color: white;
+        margin-top: 200px;
+    }
+</style>
+<body>
+<div class="container mt-5">
+    <h1 style="color: black;">New Announcement</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="title" style="color: black;">Title:</label>
+            <textarea class="form-control" id="title" name="title" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="desc" style="color: black;">Description:</label>
+            <textarea class="form-control" id="desc" name="desc" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="sub_id_fk" style="color: black;">Subject:</label>
+            <select class="form-control" id="sub_id_fk" name="sub_id_fk" required>
+                {% for subject in subjects %}
+                <option value="{{ subject.sub_id }}">{{ subject.sub_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="fid_fk" style="color: black;">Faculty:</label>
+            <select class="form-control" id="fid_fk" name="fid_fk" required>
+                {% for facultydetail in faculty %}
+                <option value="{{ facultydetail.fid }}">{{ facultydetail.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="cid_fk" style="color: black;">Course:</label>
+            <select class="form-control" id="cid_fk" name="cid_fk" required>
+                {% for coursedetail in course %}
+                <option value="{{ coursedetail.cid }}">{{ coursedetail.cname }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+</div>
+</body>
+{% endblock content %}
+
+
+

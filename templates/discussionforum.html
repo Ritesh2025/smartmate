@@ -1,0 +1,135 @@
+{% extends 'new_base.html' %}
+
+{% load static %}
+
+{% block title %}Add Discussion{% endblock title %}
+
+{% block content %}
+
+<style>
+  body {
+      background: MintCream;
+      margin-top: 150px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      font-family: 'Montserrat', sans-serif;
+      height: auto;
+  }
+  h1 {
+          text-align: center;
+          font-weight: bold;
+          margin: 20;
+      }
+
+      .form-group {
+          padding: 5px;
+          max-width: 100%;
+      }
+
+      .my-form {
+          background-color: #c7e4ff;
+          border-radius: 12px;
+          box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+              0 10px 10px rgba(0, 0, 0, 0.2);
+          width: 900px;
+          max-width: 150%;
+          padding: 25px;
+          margin: 30px;
+      }
+
+      label {
+          font-weight: bold;
+      }
+
+      input {
+          background-color: #eee;
+          border: none;
+          padding: 12px 15px;
+          margin: 8px 0;
+          width: 100%;
+      }
+
+      textarea {
+          background-color: #eee;
+          border: none;
+          padding: 12px 15px;
+          margin: 8px 0;
+          width: 100%;
+          resize: none;
+      }
+
+      select {
+          background-color: #eee;
+          border: none;
+          padding: 12px 15px;
+          margin: 8px 0;
+          width: 100%;
+      }
+
+      button:hover {
+          background-color: #0069d9;
+          border-color: #0062cc;
+      }
+
+      button {
+          border-radius: 20px;
+          border: 1px solid #4070f4;
+          background-color: #4070f4;
+          color: black;
+          font-size: 12px;
+          font-weight: bold;
+          padding: 12px 45px;
+          letter-spacing: 1px;
+          text-transform: uppercase;
+          transition: transform 80ms ease-in;
+      }
+
+      button:active {
+          transform: scale(0.95);
+      }
+
+      button:focus {
+          outline: none;
+      }
+
+      button.ghost {
+          background-color: transparent;
+          border-color: #FFFFFF;
+      }
+</style>
+
+<h2>Active Forum</h2>
+{% for forum in forums %}
+<div class="card box container">
+  <br>
+  <h5 class="card-title">
+    <h3> Forum Topic: {{ forum.topic }}</h3>
+  </h5>
+  <div class="card-body container">
+    <p>Forum Description: {{ forum.description }}</p>
+    <h5>Created Date: {{forum.date_created}} By: {{ request.session.nm }} ({{forum.created_by}})</h5>
+  </div>
+  <hr>
+  <hr>
+  <h4>Views from other users</h4>
+  {% for discuss in discussions %}
+    {% if discuss.forum == forum %}
+      <p>{{ discuss.discuss }}</p>
+      <h5>Created Date: {{discuss.date_created}} By: {{ request.session.nm }} ({{discuss.created_by}})</h5>
+    {% endif %}
+    
+  {% endfor %}
+  
+  <form method="POST" action="{% url 'discussionforum' %}">
+    {% csrf_token %}
+    <input type="hidden" name="forum_id" value="{{ forum.forum_id }}">
+    <input type="text" name="created_by" placeholder="Name" value="{{ request.session.login_type }}" required>
+    <textarea name="discuss" placeholder="Enter your discussion" required></textarea>
+    <button class="btn btn-success" style="width:fit-content; padding: 4px; margin:10px;">Add more</button>
+  </form>
+</div>
+{% endfor %}
+
+{% endblock content %}

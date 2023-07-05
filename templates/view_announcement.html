@@ -1,0 +1,41 @@
+{% extends 'new_base.html' %}
+
+{% block title %}view Announcement{% endblock title %}
+
+{% block content %}
+<style>
+    body {
+        /* background: linear-gradient(to right, #89f7fe, #66a6ff); */
+        {% comment %} background: linear-gradient(to bottom, rgba(202, 222, 241, 0.97), rgba(202, 222, 241, 0.97)); {% endcomment %}
+        color: white;
+        margin-top: 200px;
+        font-family: Garamond, serif;
+    }
+</style>
+<body>
+  <center>
+  <h1 style="font-family: Garamond, serif; font-size:60px; color: #404040	">Announcements</h1></center>
+    {% for announcement in announcements %}
+    {% comment %} <div class="card border-success mb-3" style="max-width: 18rem;">
+        <div class="card-header bg-transparent border-success"style="color: black;">{{flashcard.set_title}}</div>
+        <div class="card-body text-success">
+          <h5 class="card-title" style="color: black;">{{flashcard.term}}</h5>
+          <p class="card-text" style="color: black;">{{flashcard.desc}}</p>
+        </div>
+        <div class="card-footer bg-transparent border-success"style="color: black;"><p>{{flashcard.sid_fk.name}}</p></div>
+      </div> {% endcomment %}
+      <div class="card">
+        <div class="card" style="background-color:DarkCyan">
+            <h5 class="card-header"style="color: white;font-family: Garamond, serif;"><i class="fa fa-arrow-right" style="color:black;"></i>             
+              <b>   {{announcement.title}}</b>
+              <span style="color: snowwhite;font-size: 20px; float:right;">~{{announcement.date}}</span></h5>
+            <div class="card-body" style="background-color:FloralWhite";>
+              <p class="card-text"style="color: black; font-size:20px">{{announcement.desc}}</p>
+            </div>
+          </div>
+      </div>
+      <hr>
+      {% endfor %}
+
+</body>
+{% endblock content %}
